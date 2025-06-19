@@ -1,1 +1,1 @@
-Repo dedicated to tracking my progress in Golang, software engineering in general and backend.
+Repo dedicated to tracking my progress in Golang and my software engineering Career.
