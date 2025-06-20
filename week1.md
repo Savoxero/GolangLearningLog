@@ -2,9 +2,17 @@
 
 ## I've learned about the following topics:
 
+### GO
+
 - How to create a directory in Go
 - How to create a file in Go
 - How to create a package in Go
+
+### Github
+
+-How to transfer other peoples projects into my repository well, cloning them
+
+- How to use GitHub, branches, and commits
 
 ## Insights:
 
@@ -19,12 +27,12 @@ Learned a little about Github, Branches and Commits i still cant fully grasp it 
 
 ## To do:
 
-Learning and experimenting with github and its commiting features, branches even further
-
-i find that W3schools isnt the style of learning i like, i prefer experimenting myself currently im gonna learn from go by example and the official go documentation. im also gonna follow the tour of go.
+- Sucesfully learning syntax
+- understanding how to use github and transfer other peoples projects into my repository i want to still further dive into this topic SSH link thing interests me.
+  Currently im learning the basics of GO on coursera ![alt text](image.png) and doing
 
 ## ehh.go
 
 i generated a tic tac toe game using gemini to learn a little about it and how it works, i will be using it to generate code snippets and dissect it and learn more about the language.
 
-- Currently experiencing on sites and in vs code by breaking stuff down
+- Currently experiencing on sites and in vs code by breaking stuff down and seeing alternatives
