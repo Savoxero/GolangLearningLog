@@ -124,7 +124,7 @@ func main() {
 	currentPlayer := PlayerX
 	reader := bufio.NewReader(os.Stdin)
 
-	fmt.Println("Welcome to Tic-Tac-Toe!")
+	fmt.("Welcome to Tic-Tac-Toe!")
 
 	for {
 		board.DisplayBoard()
