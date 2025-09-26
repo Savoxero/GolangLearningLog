@@ -11,9 +11,19 @@ On the track on learning Go. Trough boot.dev, i must say really good course, it 
   > %f = float 64
 - Syntax for declaring variables:
   Booleans, strings, int8 to 64 and the difference between the bytes they use up for memory efficeiency.
-- variable bytes like strings use 1 byte per character. bool are fixed types declared by the system. int depends on the system architecture. 32 bit = 4 bytes, 64 bit = 8 bytes. so like int8 number: 122=1byte. unsigned integers being more efficient for memory 0-255=1byte. negative numbers aren't in the scope of uint types.
-- learned about truncating floats to a certain decimal place.
+- variable bytes like strings use 1 byte per character. bool are fixed types declared by the system. int depends on the system architecture. 32 bit = 4 bytes, 64 bit = 8 bytes. so like int8 number: 122=1byte. unsigned integers being more efficient for memory 0-255=1byte. negative numbers aren't in the scope of uint types. Still fuzzy about calculating the memory usage of variables like inside a function or structs.
 - constants and how theyre unchangeable values. u cannot overwrite them by any means, u can only declare them once. useful for values that are set in stone. u can also fuse constants together they don't work quite the same as variables.
+
+#### concepts:
+
+- truncating. the idea to replace a float with a integer value to either cut the decimal place or round it up, works vice versa. u can also do it with a string by converting it to a byte slice. example also below:
+  func main() {
+  str := "Hello, World!"
+
+      // truncate to first 5 characters
+      truncated := str[:5]
+
+  example below:
 
 ```go
 temperatureFloat := 88.26
