@@ -1,4 +1,6 @@
-# Update: Been Busy with real life stuff, school, work. I've had to focus almost entirely on my waitressing job and school work. And i couldn't find the time to stay consistent with my learning and my projects. It's time to lock in and get back to it. It feels really good to be back. But i also feel ashamed for not being consistent, its hard to forgive myself for that. But i must move on and keep going. if i want to be a backend developer. Sucess comes with hard work and discipline.
+# Update:
+
+- Been Busy with real life stuff, school, work. I've had to focus almost entirely on my waitressing job and school work. And i couldn't find the time to stay consistent with my learning and my projects. It's time to lock in and get back to it. It feels really good to be back. But i also feel ashamed for not being consistent, its hard to forgive myself for that. But i must move on and keep going. if i want to be a backend developer. Sucess comes with hard work and discipline.
 
 ## Golang Learning Log - Week 3
 
@@ -15,6 +17,8 @@ On the track on learning Go. Trough boot.dev, i must say really good course, it 
   Booleans, strings, int8 to 64 and the difference between the bytes they use up for memory efficeiency.
 - variable bytes like strings use 1 byte per character. bool are fixed types declared by the system. int depends on the system architecture. 32 bit = 4 bytes, 64 bit = 8 bytes. so like int8 number: 122=1byte. unsigned integers being more efficient for memory 0-255=1byte. negative numbers aren't in the scope of uint types. Still fuzzy about calculating the memory usage of variables like inside a function or structs.
 - constants and how theyre unchangeable values. u cannot overwrite them by any means, u can only declare them once. useful for values that are set in stone. u can also fuse constants together they don't work quite the same as variables.
+- deffer staement, delays the function call as the last thing to be executed before the function ends. uses the Lito principle, last in first. first in last. there are some very complex use cases and tricks. Scared to explore it for now.
+- ive learned about functions like anonymous functions they don't have a name and are used for short term cases usually inside another function, using functions as values, passing functions as arguments to other functions. ignoring return values with \_.
 
 ### concepts:
 
@@ -48,3 +52,18 @@ temperatureInt := int64(temperatureFloat)
 
 - long periods of confusing and frustrating work are often followed by moments of clarity
 - breaks are sometimes more productive than work
+- Programming and coding humbles me every single day no matter how much i think i know
+
+### Future Goals:
+
+- Gonna move from Vs Code to another IDE. and linux while at it
+- my very own server to host my projects
+-
+
+## Quick recap
+
+I am nowhere near where i want to be currently, i feel extremely inadequate and behind, I've been learning trough boot.dev but there's alot of areas to improve upon, i feel like i rushed the lessons because sometimes i get stuck for hours on end on some specific assignment. I'm currently on chapter 3 lesson 16 which is about functions. becoming a backend developer is gonna take me years of consistent work and learning.
+All i can really do is invest my time and keep learning, it's the path i've chosen and i will stubbornly pursue it. i know it will all pay off one day. but this ain't today.
+
+- _I'll keep updating my progress weekly._
+  Heres an image of my current progress on boot.dev:
