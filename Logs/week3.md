@@ -67,3 +67,5 @@ All i can really do is invest my time and keep learning, it's the path i've chos
 
 - _I'll keep updating my progress weekly._
   Heres an image of my current progress on boot.dev:
+ <img width="1476" height="823" alt="image-3" src="https://github.com/user-attachments/assets/fa3fc083-8bf3-440d-884a-0480a0e9db88" />
+
