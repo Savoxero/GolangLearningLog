@@ -63,7 +63,9 @@ temperatureInt := int64(temperatureFloat)
 ## Quick recap
 
 I am nowhere near where i want to be currently, i feel extremely inadequate and behind, I've been learning trough boot.dev but there's alot of areas to improve upon, i feel like i rushed the lessons because sometimes i get stuck for hours on end on some specific assignment. I'm currently on chapter 3 lesson 16 which is about functions. becoming a backend developer is gonna take me years of consistent work and learning.
-All i can really do is invest my time and keep learning, it's the path i've chosen and i will stubbornly pursue it. i know it will all pay off one day. but this ain't today.
+All i can really do is invest my time and keep learning, it's the path i've chosen and i will stubbornly pursue it. i know it will all pay off one day. but the day ain't near.
+its past monday so i have to make a new weekly log.
 
 - _I'll keep updating my progress weekly._
   Heres an image of my current progress on boot.dev:
+  ![alt text](image-3.png)
