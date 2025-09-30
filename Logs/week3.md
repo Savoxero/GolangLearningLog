@@ -68,4 +68,9 @@ its past monday so i have to make a new weekly log.
 
 - _I'll keep updating my progress weekly._
   Heres an image of my current progress on boot.dev:
+<<<<<<< HEAD
   ![alt text](image-3.png)
+=======
+ <img width="1476" height="823" alt="image-3" src="https://github.com/user-attachments/assets/fa3fc083-8bf3-440d-884a-0480a0e9db88" />
+
+>>>>>>> f4ad798ba33f7c7ecab597c402b6ade8f6e555a2
