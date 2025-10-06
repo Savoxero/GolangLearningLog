@@ -96,4 +96,4 @@ was stuck on a simple error for 2 whole hours, i did come home from work a littl
 - been busy with my waiter work but i still managed to learn alot of stuff on the side. i have built this calculator project which im gonna refine, *Maybe add a gui* and I am gonna resume with boot.dev currently haven't bought the monthly subscription yet. The contents inside have been helpful
 - I also have to learn git my inadequacy and me being illiterate with git and github has been a annoying experience. There is much to work on that part.
 ## BOOT.DEV progress
-![alt text](image.png)
+![alt text](Logs/images/bootprogress4.png)
