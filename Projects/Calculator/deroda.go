@@ -12,20 +12,30 @@ func main() {
 	var input string
 	var filterednumb float64
 	var err error
-	//var finalnumresult float64///
+	var finalnumresult float64
+	var resultA float64
+	var calculationcheck = true
 
 	for {
-		fmt.Print("Enter first number: ")
-		fmt.Scan(&input)
-		if input == "exit" {
-			fmt.Println("thank you, come again")
-			return
-		}
 
-		filterednumb, err = strconv.ParseFloat(input, 64)
-		if err != nil {
-			fmt.Println("Please Enter a valid number")
-			continue
+		for {
+			if num1 > 0 {
+				break
+			}
+			fmt.Print("Enter first number: ")
+			fmt.Scan(&input)
+			if input == "exit" {
+				fmt.Println("thank you, come again")
+				return
+			}
+
+			filterednumb, err = strconv.ParseFloat(input, 64)
+			calculationcheck = false
+			if err != nil {
+				fmt.Println("Please Enter a valid number")
+				continue
+			}
+			break
 		}
 
 		num1 = filterednumb
@@ -43,12 +53,6 @@ func main() {
 			if operation != "+" && operation != "/" && operation != "-" && operation != "*" && operation != "exit" {
 				fmt.Println("Please Enter a valid operation")
 				continue
-			}
-
-			filterednumb, err = strconv.ParseFloat(input, 64)
-			if err != nil {
-				fmt.Println("Please Enter a valid operation")
-				break
 			}
 		}
 
@@ -68,30 +72,57 @@ func main() {
 
 		num2 = filterednumb
 
-		switch operation {
-		case "-":
-			fmt.Println(subtract(num1, num2))
-		//	finalnumresult = subtract(num1, num2)
-		case "*":
-			fmt.Println(multiply(num1, num2))
-		///	finalnumresult = multiply(num1, num2)
-		case "/":
-			result, err := divide(num1, num2)
-			if err != nil {
-				fmt.Println(err)
-				break
-			}
-			fmt.Println(result)
-		///	finalnumresult = result
-		case "+":
-			fmt.Println(add(num1, num2))
-		///	finalnumresult = add(num1, num2)
+		if calculationcheck == true {
+			switch operation {
+			case "-":
+				fmt.Println(subtract(finalnumresult, num2))
 
-		default:
-			fmt.Println("Unknown operation")
+			case "*":
+				fmt.Println(multiply(finalnumresult, num2))
+
+			case "/":
+				result, err := divide(finalnumresult, num2)
+				if err != nil {
+					fmt.Println(err)
+					break
+				}
+				fmt.Println(result)
+
+			case "+":
+				fmt.Println(add(finalnumresult, num2))
+
+			default:
+				fmt.Println("Unknown operation")
+			}
+		} else if calculationcheck == false {
+
+			switch operation {
+			case "-":
+				fmt.Println(subtract(num1, num2))
+				resultA = subtract(num1, num2)
+			case "*":
+				fmt.Println(multiply(num1, num2))
+				resultA = multiply(num1, num2)
+			case "/":
+				result, err := divide(num1, num2)
+				if err != nil {
+					fmt.Println(err)
+					break
+				}
+				fmt.Println(result)
+				resultA = result
+			case "+":
+				fmt.Println(add(num1, num2))
+				resultA = add(num1, num2)
+
+			default:
+				fmt.Println("Unknown operation")
+			}
+
+			finalnumresult = resultA
+
+			fmt.Printf("The starting number is now %f", finalnumresult)
 		}
-		///finalnumresult = num1
 
 	}
-
 }
