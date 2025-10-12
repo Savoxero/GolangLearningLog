@@ -16,7 +16,7 @@
 Extremely frustrating at first its not my type of thing, with the help of claude i was able to generate and learn about css generally, i dont think i've even gotten to the top of the iceberg yet, in the future i will try to customize other stuff but for now im done with my obsidian vault.
 here is some code i generated with the help of claude and customized it to my liking:  
 how it presents in my vault:
-![alt text](image-1.png) ![alt text](image-2.png)
+![alt text](images/image-1.png) ![alt text](images/image-2.png)
 
 # Golang
 

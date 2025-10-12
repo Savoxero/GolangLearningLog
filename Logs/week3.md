@@ -68,4 +68,4 @@ its past monday so i have to make a new weekly log.
 
 - _I'll keep updating my progress weekly._
   Heres an image of my current progress on boot.dev:
-  ![alt text](image-3.png)
+  ![alt text](images/image-3.png)
