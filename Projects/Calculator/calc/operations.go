@@ -1,22 +1,22 @@
-package main
+package calc
 
 import "errors"
 
-func add(a, b float64) float64 {
+func Add(a, b float64) float64 {
 	c := a + b
 	return c
 }
 
-func subtract(a, b float64) float64 {
+func Subtract(a, b float64) float64 {
 	c := a - b
 	return c
 }
 
-func multiply(a, b float64) float64 {
+func Multiply(a, b float64) float64 {
 	c := a * b
 	return c
 }
-func divide(a, b float64) (float64, error) {
+func Divide(a, b float64) (float64, error) {
 
 	if b == 0 {
 

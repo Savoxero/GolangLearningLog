@@ -1,6 +1,7 @@
 package main
 
 import (
+	"Calculator/calc"
 	"fmt"
 	"strconv"
 )
@@ -70,13 +71,13 @@ func main() {
 		}
 		switch operation {
 		case "-":
-			fmt.Println(subtract(firstOperand, num2))
-			finalnumresult = subtract(firstOperand, num2)
+			fmt.Println(calc.Subtract(firstOperand, num2))
+			finalnumresult = calc.Subtract(firstOperand, num2)
 		case "*":
-			fmt.Println(multiply(firstOperand, num2))
-			finalnumresult = multiply(firstOperand, num2)
+			fmt.Println(calc.Multiply(firstOperand, num2))
+			finalnumresult = calc.Multiply(firstOperand, num2)
 		case "/":
-			result, err := divide(firstOperand, num2)
+			result, err := calc.Divide(firstOperand, num2)
 			if err != nil {
 				fmt.Println(err)
 				break
@@ -84,8 +85,8 @@ func main() {
 			fmt.Println(result)
 			finalnumresult = result
 		case "+":
-			fmt.Println(add(firstOperand, num2))
-			finalnumresult = add(firstOperand, num2)
+			fmt.Println(calc.Add(firstOperand, num2))
+			finalnumresult = calc.Add(firstOperand, num2)
 
 		default:
 			fmt.Println("Unknown operation")
