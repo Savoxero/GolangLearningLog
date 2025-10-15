@@ -16,6 +16,7 @@ func main() {
 	var finalnumresult float64 ///final result of each calculation, used for every calculations past the first one
 	var calculationcheck bool  /// boolean variable that decides in which order should the calculation play out
 	var firstOperand float64   /// to make the switch statement cleaner
+	var history []string
 	for {
 		if calculationcheck == false { /// first for loop, it checks for calculation check, its set to false in default so it executes it first
 			fmt.Print("Enter first number: ") /// user input if its exit, exits the entire program,  it scans for a string that isnt exit, continues the loop till a number is the input.
@@ -39,6 +40,9 @@ func main() {
 				fmt.Println("thank you, come again") /// the condition of breaking the loop is entering a valid operation, else the loop continues looping.
 				return
 			}
+			if operation == "history" {
+				fmt.Println("The following calculation history:", history)
+			}
 			if operation == "+" || operation == "/" || operation == "-" || operation == "*" || operation == "exit" {
 				break
 			}
@@ -53,6 +57,9 @@ func main() {
 			fmt.Scan(&input)
 			if input == "exit" {
 				return
+			}
+			if input == "history" {
+				fmt.Println("The following calculation history:", history)
 			}
 			filterednumb, err = strconv.ParseFloat(input, 64) /// and loops when its a string and not a number.
 			if err != nil {
@@ -91,6 +98,8 @@ func main() {
 		default:
 			fmt.Println("Unknown operation")
 		}
-
-	} /// this sums it up, finalnumresult takes on multiple values troughout the calculation process, and my calculator.go has all the calculation code.
+		calculation := fmt.Sprintf("%2.f %s %2.f = %2.f|||", firstOperand, operation, num2, finalnumresult)
+		history = append(history, calculation)
+	}
+	/// this sums it up, finalnumresult takes on multiple values troughout the calculation process, and my calculator.go has all the calculation code.
 } /// pretty simple code, but it works
