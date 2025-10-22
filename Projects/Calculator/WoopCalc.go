@@ -16,7 +16,7 @@ func main() {
 	var finalnumresult float64 ///final result of each calculation, used for every calculations past the first one
 	var calculationcheck bool  /// boolean variable that decides in which order should the calculation play out
 	var firstOperand float64   /// to make the switch statement cleaner
-	var history []string
+	var history []string       // a slice of a string, stores all calculations done in the calc
 	for {
 		if calculationcheck == false { /// first for loop, it checks for calculation check, its set to false in default so it executes it first
 			fmt.Print("Enter first number: ") /// user input if its exit, exits the entire program,  it scans for a string that isnt exit, continues the loop till a number is the input.
@@ -41,12 +41,12 @@ func main() {
 				return
 			}
 			if operation == "history" {
-				fmt.Println("The following calculation history:", history)
+				fmt.Println("The following is the calculation history thus far:", history)
+				continue
 			}
 			if operation == "+" || operation == "/" || operation == "-" || operation == "*" || operation == "exit" {
 				break
-			}
-			if operation != "+" && operation != "/" && operation != "-" && operation != "*" && operation != "exit" {
+			} else {
 				fmt.Println("Please Enter a valid operation")
 				continue
 			}
@@ -59,7 +59,8 @@ func main() {
 				return
 			}
 			if input == "history" {
-				fmt.Println("The following calculation history:", history)
+				fmt.Println("The following is the calculation history thus far:", history)
+				continue
 			}
 			filterednumb, err = strconv.ParseFloat(input, 64) /// and loops when its a string and not a number.
 			if err != nil {
@@ -98,8 +99,8 @@ func main() {
 		default:
 			fmt.Println("Unknown operation")
 		}
-		calculation := fmt.Sprintf("%2.f %s %2.f = %2.f|||", firstOperand, operation, num2, finalnumresult)
-		history = append(history, calculation)
+		calculation := fmt.Sprintf("{%.2f %s %.2f = %.2f}", firstOperand, operation, num2, finalnumresult) // sprintf uses the user's input to create the history of calculations.
+		history = append(history, calculation)                                                             // appends calculation to history, as a string
 	}
 	/// this sums it up, finalnumresult takes on multiple values troughout the calculation process, and my calculator.go has all the calculation code.
 } /// pretty simple code, but it works
