@@ -17,6 +17,7 @@ func main() {
 	var calculationcheck bool  /// boolean variable that decides in which order should the calculation play out
 	var firstOperand float64   /// to make the switch statement cleaner
 	var history []string       // a slice of a string, stores all calculations done in the calc
+	var index int              // index for the history
 	for {
 		if calculationcheck == false { /// first for loop, it checks for calculation check, its set to false in default so it executes it first
 			fmt.Print("Enter first number: ") /// user input if its exit, exits the entire program,  it scans for a string that isnt exit, continues the loop till a number is the input.
@@ -41,7 +42,9 @@ func main() {
 				return
 			}
 			if operation == "history" {
-				fmt.Println("The following is the calculation history thus far:", history)
+				fmt.Println("┌───── Calculation History ───┐")
+				fmt.Println(history)
+				fmt.Println("└─────────────────────────────┘")
 				continue
 			}
 			if operation == "+" || operation == "/" || operation == "-" || operation == "*" || operation == "exit" {
@@ -59,7 +62,9 @@ func main() {
 				return
 			}
 			if input == "history" {
-				fmt.Println("The following is the calculation history thus far:", history)
+				fmt.Println("┌───── Calculation History ───┐")
+				fmt.Println(history)
+				fmt.Println("└─────────────────────────────┘")
 				continue
 			}
 			filterednumb, err = strconv.ParseFloat(input, 64) /// and loops when its a string and not a number.
@@ -79,28 +84,33 @@ func main() {
 		}
 		switch operation {
 		case "-":
-			fmt.Println(calc.Subtract(firstOperand, num2))
 			finalnumresult = calc.Subtract(firstOperand, num2)
+			fmt.Println(finalnumresult)
 		case "*":
-			fmt.Println(calc.Multiply(firstOperand, num2))
 			finalnumresult = calc.Multiply(firstOperand, num2)
+			fmt.Println(finalnumresult)
 		case "/":
 			result, err := calc.Divide(firstOperand, num2)
 			if err != nil {
 				fmt.Println(err)
-				break
+				continue
 			}
-			fmt.Println(result)
 			finalnumresult = result
+			fmt.Println(result)
 		case "+":
-			fmt.Println(calc.Add(firstOperand, num2))
 			finalnumresult = calc.Add(firstOperand, num2)
+			fmt.Println(finalnumresult)
 
 		default:
 			fmt.Println("Unknown operation")
 		}
-		calculation := fmt.Sprintf("{%.2f %s %.2f = %.2f}", firstOperand, operation, num2, finalnumresult) // sprintf uses the user's input to create the history of calculations.
-		history = append(history, calculation)                                                             // appends calculation to history, as a string
-	}
-	/// this sums it up, finalnumresult takes on multiple values troughout the calculation process, and my calculator.go has all the calculation code.
-} /// pretty simple code, but it works
+		for index = 0; index < len(history); index++ { // simple condition to increase the number of index proportional to the calculation's done
+		}
+		calculation := fmt.Sprintf("{%d.  %.2f %s %.2f = %.2f}\n", index, firstOperand, operation, num2, finalnumresult) // sprintf uses the user's input to create the history of calculations.
+		history = append(history, calculation)
+
+	} // appends calculation to history, as a string
+}
+
+/// this sums it up, finalnumresult takes on multiple values troughout the calculation process, and my calculator.go has all the calculation code.
+/// pretty simple code, but it works
