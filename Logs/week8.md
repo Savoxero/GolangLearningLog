@@ -37,3 +37,13 @@
 - Cause: my calculator was not working as intended, it was skipping some inputs and not counting them properly
 - Effect: i tried searching for some fitting condition for the for loop, learning the limits of the conditions you can possibly make in go
 - fix: for index = 0; index < len(history); index++ it uses the element count of the slice to determine how many times to loop, instead of trying to find a condition that matches the input value( i just needed something to track how many times the calculation has run, and i never knew u could use len() in the for loop condition)
+### input conversion problem
+- Cause:tried to implement a code that strips down input from the user into seperate strings and find the command and the arguments. so EG: "add find my wallet on the street". i had trouble with seperating the add.
+- Effect: i learned about strings.fields() which splits a string into a slice of strings based on spaces and then used strings.join() to join the arguments back together. EG: filter 
+```go
+:= strings.Fields(input)
+		cmtokens := filter[0]
+		argtokens := strings.Join(filter[1:], " ")
+		input = cmtokens
+        ``  // what this does is split the input into 2 seperate variables, the command and the arguments. it made me understand slices better as well. (slices need something to point towards to, so you can't just declare a slice and use it, it needs to be assigned to something first)
+- Fix: used strings.fields() and strings.join() to split the input into command and arguments.

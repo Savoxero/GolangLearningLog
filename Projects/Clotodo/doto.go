@@ -49,14 +49,19 @@ func main() {
 			tasks = append(tasks, newTask)
 		case "remove":
 			id, err := strconv.Atoi(argtokens)
-			for taskfinder := range tasks {
-				if tasks[taskfinder].ID == id {
+			if err != nil {
+				fmt.Println("invalid", id, "Please enter a valid ID")
+				continue
+			}
+			for IDfinder := range tasks {
+				if tasks[IDfinder].ID == id {
+					tasks = append(tasks[:IDfinder], tasks[IDfinder+1:]...)
+					fmt.Println("Deleted Task:", id)
 					break
-				} else if tasks[taskfinder].ID != id {
-					fmt.Println("invalid", err, " number, please enter a valid Task ID")
+				} else if len(tasks) == 0 {
+					fmt.Println(id, "no current tasks logged")
 					continue
 				}
-
 			}
 
 		case "modify":
@@ -64,6 +69,7 @@ func main() {
 		case "exit":
 			fmt.Println("Goodbye, come again")
 			return
+
 		}
 	}
 }
