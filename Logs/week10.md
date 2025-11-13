@@ -34,3 +34,14 @@
 - implement saving and loading tasks from a file
 - completely rewrite the ID system. it blocks on [0] and the printed tasks do not match the index in the slice len(tasks) +1 does not work efficiently
 - there are alot of other things i want to add. GPT has given me some cool ideas like categorizing tasks, API integration, deadlines and reminders etc. but for now im just focusing on getting the basics down and making a functional todo list CLI app.
+## Notes, and random bullshit:
+``` go for IDsegregator := len(tasks) - 1; IDsegregator >= 0; IDsegregator-- {
+					tasks[IDsegregator].ID = tasks[IDfinder].ID
+					for IDsegregator = len(tasks) + 1; IDsegregator >= tasks[IDfinder].ID; IDsegregator++ {
+						tasks[IDsegregator].ID = tasks[IDfinder].ID
+						break
+					}
+				}
+			}
+``` absolutely disgusting piece of code. i barely understand it myself. i want to use it as a reference for what NOT to do when writing code. im trying to rewrite the ID system completely. its a mess right now.``` (tried to renumber the IDS after segregation but it just made everything worse) ```
+` absolute headache. 
