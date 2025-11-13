@@ -45,3 +45,4 @@
 			}
 ``` absolutely disgusting piece of code. i barely understand it myself. i want to use it as a reference for what NOT to do when writing code. im trying to rewrite the ID system completely. its a mess right now.``` (tried to renumber the IDS after segregation but it just made everything worse) ```
 ` absolute headache. 
+- refined some printing messages to make them clearer for the user. (it was messy and did not match anything before)
