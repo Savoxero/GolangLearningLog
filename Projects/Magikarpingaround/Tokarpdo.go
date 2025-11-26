@@ -47,7 +47,7 @@ var welcomeMessage string = `
 =========================================================================================================`
 var tasks []Task
 var input string
-var a int
+var PeakID int
 
 type Task struct {
 	ID          int
@@ -62,7 +62,16 @@ func main() {
 	fmt.Println(magikarp, welcomeMessage)
 	for {
 		fmt.Print("> ")
-		scanner.Scan()
+		Valid := scanner.Scan()
+		if !Valid {
+			if err := scanner.Err(); err != nil {
+				fmt.Fprintln(os.Stderr, "input ERROR:", err)
+			} else {
+				fmt.Println("input closed: (EOF)")
+			}
+			break
+		}
+
 		input = scanner.Text()
 		filter := strings.Fields(input)
 		if len(filter) <= 0 {
@@ -82,8 +91,9 @@ func main() {
 				fmt.Println("invalid argument")
 				break
 			}
+
 			newTask := Task{
-				ID:          idgenerator(a),
+				ID:          idgenerator(),
 				Description: description,
 				Priority:    "medium",
 				Completed:   false,
@@ -103,13 +113,13 @@ func main() {
 				continue
 			}
 			found := false /* bool flag for checking whether the task id is inside the slice, if false it means it's not, the moment the loop iterates over a match it's true and as intended*/
-			for IDholder, IDmatcher := range tasks {
-				fmt.Println("searching for tasks:", tasks[IDholder].ID, tasks[IDholder].Description)
+			for IndexREM, IDmatcher := range tasks {
+				fmt.Println("searching for tasks:", tasks[IndexREM].ID, tasks[IndexREM].Description)
 				fmt.Println("comparing IDS:", IDmatcher.ID, id)
 				if id == IDmatcher.ID {
 					found = true
-					fmt.Println("deleted the following task: ID:", tasks[IDholder].ID, "desc:", tasks[IDholder].Description) /* has to be printed before due to the fact that IDholder.ID(the slice number)+1 counteracts the print message, i have tried alternatives but to no avail. */
-					tasks = append(tasks[:IDholder], tasks[IDholder+1:]...)
+					fmt.Println("deleted the following task: ID:", IDmatcher.ID, "desc:", IDmatcher.Description) /* has to be printed before due to the fact that IndexREM.ID(the slice number)+1 counteracts the print message, i have tried alternatives but to no avail. */
+					tasks = append(tasks[:IndexREM], tasks[IndexREM+1:]...)
 					break
 				}
 
@@ -119,26 +129,38 @@ func main() {
 			}
 
 		case "modify":
-		case "show":
-			fmt.Println("the current saved tasks:", tasks)
+		case "check":
+			boolflag := true
+			if argtokens != "" {
+				boolflag = false
+				id, err := strconv.Atoi(argtokens)
+				for i := range tasks {
+					if tasks[i].ID == id {
+						fmt.Println("Task:", tasks[i].ID, "// Desc:", tasks[i].Description, "// Time added:", tasks[i].Date, "// Priority:", tasks[i].Priority, "// Completion:", tasks[i].Completed)
+					}
+					if err != nil {
+						fmt.Println("no argument as ID detected. Enter an ID or type check with no ID")
+						continue
+					} else if argtokens == "" {
+						fmt.Println(tasks)
+					}
+				}
+			}
+			if boolflag == true {
+				fmt.Println("//All of the current tasks//:", tasks)
+			}
+
 		case "default":
 		case "exit":
 			fmt.Println("Goodbye, have a good day/night")
 			return
 
 		}
-
 	}
 }
-func idgenerator(int) int {
-	i := 0
-	for i = 0; i <= 1000; i++ {
-		if i > len(tasks) {
-			break
-		} else {
-			i = len(tasks) + 1
-		}
 
-	}
-	return i
+func idgenerator() int {
+	PeakID++
+
+	return PeakID
 }
