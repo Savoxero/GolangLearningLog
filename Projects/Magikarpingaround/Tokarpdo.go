@@ -86,46 +86,58 @@ func main() {
 			fmt.Println("")
 
 		case "add":
-			description := argtokens
-			if description == "" {
-				fmt.Println("invalid argument")
-				break
-			}
 
-			newTask := Task{
-				ID:          idgenerator(),
-				Description: description,
-				Priority:    "medium",
-				Completed:   false,
-				Date:        time.Now().Format("2006-01-02 15:04:05"),
+			descriptions := strings.Split(argtokens, "&")
+			for _, desc := range descriptions {
+				desc = strings.TrimSpace(desc)
+				if desc == "" {
+					fmt.Println("invalid argument")
+					continue
+				}
+				newTask := Task{
+					ID:          idgenerator(),
+					Description: desc,
+					Priority:    "medium",
+					Completed:   false,
+					Date:        time.Now().Format("2006-01-02 15:04:05"),
+				}
+				tasks = append(tasks, newTask)
+				fmt.Println(newTask)
 			}
-			tasks = append(tasks, newTask)
-			fmt.Println(newTask)
 
 		case "remove":
-			id, err := strconv.Atoi(argtokens)
-			if err != nil {
-				fmt.Println("no argument as ID detected. Enter an ID")
-				continue
-			}
-			if len(tasks) == 0 {
-				fmt.Println("no saved tasks currently")
-				continue
-			}
-			found := false /* bool flag for checking whether the task id is inside the slice, if false it means it's not, the moment the loop iterates over a match it's true and as intended*/
-			for IndexREM, IDmatcher := range tasks {
-				fmt.Println("searching for tasks:", tasks[IndexREM].ID, tasks[IndexREM].Description)
-				fmt.Println("comparing IDS:", IDmatcher.ID, id)
-				if id == IDmatcher.ID {
-					found = true
-					fmt.Println("deleted the following task: ID:", IDmatcher.ID, "desc:", IDmatcher.Description) /* has to be printed before due to the fact that IndexREM.ID(the slice number)+1 counteracts the print message, i have tried alternatives but to no avail. */
-					tasks = append(tasks[:IndexREM], tasks[IndexREM+1:]...)
+			found := false
+
+			multdel := strings.Split(argtokens, "&")
+			for _, IDIN := range multdel {
+				IDIN = strings.TrimSpace(IDIN)
+				if IDIN == "" {
+					fmt.Println("No id detected/error")
+					continue
+				}
+				if len(tasks) == 0 {
+					fmt.Println("no saved tasks currently")
 					break
+
+				}
+				id, err := strconv.Atoi(IDIN)
+				if err != nil {
+					fmt.Println(" Error Occured, Invalid Input")
+					continue
 				}
 
-			}
-			if found == false {
-				fmt.Println("the task with the ID of ", id, " could not be found")
+				for i, d := range tasks {
+					if id == d.ID {
+						found = true
+						fmt.Println("deleted the following task: ID:", d.ID, "desc:", d.Description) /* has to be printed before due to the fact that i(the slice number)+1 counteracts the print message, i have tried alternatives but to no avail. */
+						tasks = append(tasks[:i], tasks[i+1:]...)
+						continue
+					}
+
+				}
+				if found == false {
+					fmt.Println("the task with the ID of ", id, " could not be found")
+				}
 			}
 
 		case "modify":
