@@ -18,12 +18,13 @@
 - Batch operations
     - add multiple, remove range, bulk modify priorities
 ### Plans right now:
-1 ~~Validate inputs early: check strconv.Atoi error immediately and only then run the search loop.
+1. ~~Validate inputs early: check strconv.Atoi error immediately and only then run the search loop.
 Check scanner.Scan() result and scanner.Err(); handle EOF gracefully~~
-2 Improve user output: friendly messages and a formatted list command.
-3 Add a simple persistence layer (JSON file save/load) so IDs survive restarts.
-4 Centralize parsing/validation into one function and add unit tests for it and idgenerator.
-5 Add bounds/length limits and duplicate detection to avoid bad inputs.
-6 Expand help text and add examples for each command.
+2. Improve user output: friendly messages and a formatted list command.
+3. Add a simple persistence layer (JSON file save/load) so IDs survive restarts.
+4. Centralize parsing/validation into one function and add unit tests for it and idgenerator.
+5. Add bounds/length limits and duplicate detection to avoid bad inputs.
+6. Expand help text and add examples for each command.
 #Progress:
-- [x] Validated inputs early and handled errors immediately.
+- [x] Validated inputs early and handled errors immediately. (EOF,I/O errors)
+- Working on multiple line inputs for adding tasks.

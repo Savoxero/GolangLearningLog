@@ -143,23 +143,34 @@ func main() {
 		case "modify":
 		case "check":
 			boolflag := true
+			multiput := strings.Split(argtokens, "&")
+
 			if argtokens != "" {
 				boolflag = false
-				id, err := strconv.Atoi(argtokens)
-				for i := range tasks {
-					if tasks[i].ID == id {
-						fmt.Println("Task:", tasks[i].ID, "// Desc:", tasks[i].Description, "// Time added:", tasks[i].Date, "// Priority:", tasks[i].Priority, "// Completion:", tasks[i].Completed)
-					}
+				for _, stRang := range multiput {
+					stRang = strings.TrimSpace(stRang)
+					dada, err := strconv.Atoi(stRang)
 					if err != nil {
 						fmt.Println("no argument as ID detected. Enter an ID or type check with no ID")
-						continue
-					} else if argtokens == "" {
-						fmt.Println(tasks)
+						break
+					}
+					for i := range tasks {
+						if tasks[i].ID == dada {
+							fmt.Println("Task Number:", tasks[i].ID, "// Desc:", tasks[i].Description, "// Time added/Created:", tasks[i].Date, "// Priority:", tasks[i].Priority, "// Completion:", tasks[i].Completed)
+
+							continue
+						}
 					}
 				}
 			}
+
+			if argtokens == "" {
+				fmt.Println(tasks)
+				break
+			}
+
 			if boolflag == true {
-				fmt.Println("//All of the current tasks//:", tasks)
+				fmt.Println("//All of the currently saved tasks//:", tasks)
 			}
 
 		case "default":
