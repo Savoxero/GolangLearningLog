@@ -31,6 +31,7 @@ Check scanner.Scan() result and scanner.Err(); handle EOF gracefully~~
 - Added multiple input validations through "&" EG: ( add go buy a gallon of milk & text Andrew", this makes 2 tasks in one line) along with error handling, and generally tested edge cases and i put some control flow to the edge cases.
 - completely restructured the entire remove logic along with adding multiple input through ("&") EG: ( remove 1 & 3 & 5 removes tasks with ID's 1,3,5) along with error handling and edge case testing. ( did it on my first try without any major issues) kinda proud of that. ^^
 - added a multiple input to the check command, EG: ( check 2 & 4 & 6 ) else just type check and it'll show everything that is currently saved.
+- added some control flow  to the check command to make it more intuitive, tested majority of the edge cases. it should not yield any unexpected results and should always print something out to the user.
 ## Cause -> Effect -> Fix log:
 1. Cause: while trying to implement the multiple input addition, i overgineered the input parsing and validation logic, making it convoluted and hard to follow.
    Effect: This led to complexity and made it vulnerable to multiple edge cases that were hard to track.

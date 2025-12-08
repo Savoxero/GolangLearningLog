@@ -107,7 +107,6 @@ func main() {
 
 		case "remove":
 			found := false
-
 			multdel := strings.Split(argtokens, "&")
 			for _, IDIN := range multdel {
 				IDIN = strings.TrimSpace(IDIN)
@@ -136,20 +135,21 @@ func main() {
 
 				}
 				if found == false {
-					fmt.Println("the task with the ID of ", id, " could not be found")
+					fmt.Println("the task with the ID of", id, " could not be found")
 				}
 			}
 
 		case "modify":
 		case "check":
-			boolflag := true
+			argtokens := strings.TrimSpace(argtokens)
 			multiput := strings.Split(argtokens, "&")
-
 			if argtokens != "" {
-				boolflag = false
 				for _, stRang := range multiput {
 					stRang = strings.TrimSpace(stRang)
 					dada, err := strconv.Atoi(stRang)
+					if len(tasks) == 0 {
+						fmt.Println("no saved tasks currently")
+					}
 					if err != nil {
 						fmt.Println("no argument as ID detected. Enter an ID or type check with no ID")
 						break
@@ -157,27 +157,30 @@ func main() {
 					for i := range tasks {
 						if tasks[i].ID == dada {
 							fmt.Println("Task Number:", tasks[i].ID, "// Desc:", tasks[i].Description, "// Time added/Created:", tasks[i].Date, "// Priority:", tasks[i].Priority, "// Completion:", tasks[i].Completed)
-
 							continue
+						}
+
+						if dada > tasks[i].ID {
+							fmt.Println("The task with the ID of", dada, "could not be found.")
+							break
 						}
 					}
 				}
 			}
 
-			if argtokens == "" {
-				fmt.Println(tasks)
+			if len(tasks) == 0 && argtokens == "" {
+				fmt.Println("no saved tasks currently")
 				break
 			}
+			if argtokens == "" {
+				fmt.Println(tasks)
 
-			if boolflag == true {
-				fmt.Println("//All of the currently saved tasks//:", tasks)
 			}
 
 		case "default":
 		case "exit":
 			fmt.Println("Goodbye, have a good day/night")
 			return
-
 		}
 	}
 }
