@@ -47,10 +47,10 @@ func main() {
 				fmt.Println("└─────────────────────────────┘")
 				continue
 			}
-			if operation == "+" || operation == "/" || operation == "-" || operation == "*" || operation == "exit" {
+			if operation == "+" || operation == "/" || operation == "-" || operation == "*" || operation == "exit" || operation == "history" {
 				break
 			} else {
-				fmt.Println("Please Enter a valid operation")
+				fmt.Println("Please enter a valid operation")
 				continue
 			}
 		}
@@ -108,8 +108,8 @@ func main() {
 		calculation := fmt.Sprintf("{%d.  %.2f %s %.2f = %.2f}\n", index, firstOperand, operation, num2, finalnumresult) // sprintf uses the user's input to create the history of calculations.
 		history = append(history, calculation)
 
-	} // appends calculation to history, as a string
-}
+	}
+} // appends calculation to history, as a string
 
 /// this sums it up, finalnumresult takes on multiple values troughout the calculation process, and my calculator.go has all the calculation code.
 /// pretty simple code, but it works

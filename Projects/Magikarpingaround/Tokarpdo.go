@@ -2,6 +2,8 @@ package main
 
 import (
 	"bufio"
+
+	"encoding/json"
 	"fmt"
 	"os"
 	"strconv"
@@ -9,7 +11,7 @@ import (
 	"time"
 )
 
-var magikarp string = `
+const magikarp string = `
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣶⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⠟⠁⢻⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⠟⠁⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -39,14 +41,14 @@ var magikarp string = `
 ⠀⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⠀⠀⠈⢧⡙⢦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⢰⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠑⢦⣽⣦⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 `
-var welcomeMessage string = `
+const welcomeMessage string = `
 =========================================================================================================
                                    WELCOME TO **TOKARPDO**!
                       A reliable to-do app for your daily use.
                            Enter **help** for the list of commands.
 =========================================================================================================`
+
 var tasks []Task
-var input string
 var PeakID int
 
 type Task struct {
@@ -60,6 +62,7 @@ type Task struct {
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
 	fmt.Println(magikarp, welcomeMessage)
+	_ = LoadFromfile()
 	for {
 		fmt.Print("> ")
 		Valid := scanner.Scan()
@@ -72,7 +75,7 @@ func main() {
 			break
 		}
 
-		input = scanner.Text()
+		input := scanner.Text()
 		filter := strings.Fields(input)
 		if len(filter) <= 0 {
 			fmt.Println("no input detected, enter help for a list of commands")
@@ -103,12 +106,13 @@ func main() {
 				}
 				tasks = append(tasks, newTask)
 				fmt.Println(newTask)
+				json.Marshal(tasks)
 			}
 
 		case "remove":
-			found := false
 			multdel := strings.Split(argtokens, "&")
 			for _, IDIN := range multdel {
+				found := false
 				IDIN = strings.TrimSpace(IDIN)
 				if IDIN == "" {
 					fmt.Println("No id detected/error")
@@ -121,7 +125,7 @@ func main() {
 				}
 				id, err := strconv.Atoi(IDIN)
 				if err != nil {
-					fmt.Println(" Error Occured, Invalid Input")
+					fmt.Println(" Error Occured, Invalid Input, An ID is necessary")
 					continue
 				}
 
@@ -137,40 +141,40 @@ func main() {
 				if found == false {
 					fmt.Println("the task with the ID of", id, " could not be found")
 				}
+
 			}
 
 		case "modify":
 		case "check":
 			argtokens := strings.TrimSpace(argtokens)
 			multiput := strings.Split(argtokens, "&")
+			if len(tasks) == 0 && argtokens == "" {
+				fmt.Println("no saved tasks currently")
+				break
+			}
 			if argtokens != "" {
 				for _, stRang := range multiput {
+					boolflag := false
 					stRang = strings.TrimSpace(stRang)
+					usrInerr := stRang
 					dada, err := strconv.Atoi(stRang)
-					if len(tasks) == 0 {
-						fmt.Println("no saved tasks currently")
-					}
 					if err != nil {
-						fmt.Println("no argument as ID detected. Enter an ID or type check with no ID")
-						break
+						fmt.Println(usrInerr, "Is an invalid argument. Please Enter an ID or Type Check With No ID")
+						continue
 					}
 					for i := range tasks {
 						if tasks[i].ID == dada {
 							fmt.Println("Task Number:", tasks[i].ID, "// Desc:", tasks[i].Description, "// Time added/Created:", tasks[i].Date, "// Priority:", tasks[i].Priority, "// Completion:", tasks[i].Completed)
+							boolflag = true
 							continue
 						}
 
-						if dada > tasks[i].ID {
-							fmt.Println("The task with the ID of", dada, "could not be found.")
-							break
-						}
+					}
+					if boolflag == false {
+						fmt.Println("The task with the ID of", dada, "could not be found.")
+						continue
 					}
 				}
-			}
-
-			if len(tasks) == 0 && argtokens == "" {
-				fmt.Println("no saved tasks currently")
-				break
 			}
 			if argtokens == "" {
 				fmt.Println(tasks)
@@ -189,4 +193,20 @@ func idgenerator() int {
 	PeakID++
 
 	return PeakID
+}
+func LoadFromfile() error {
+	data, err := os.ReadFile("KarpData.json")
+	if err != nil {
+		return err
+	}
+	if len(data) == 0 {
+		fmt.Printf("No saved tasks have been read, If there are existent tasks please pastethe JSON into KarpData.json and save.\nUpon the reboot of the program everything should load as intended.")
+		return nil
+	}
+	fmt.Println("File read successfully!")
+	fmt.Println("Raw bytes:", data)
+	fmt.Println("As string:", string(data))
+
+	return nil
+
 }
