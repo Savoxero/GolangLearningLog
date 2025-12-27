@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-
 	"encoding/json"
 	"fmt"
 	"os"
@@ -97,6 +96,7 @@ func main() {
 					fmt.Println("invalid argument")
 					continue
 				}
+
 				newTask := Task{
 					ID:          idgenerator(),
 					Description: desc,
@@ -105,8 +105,12 @@ func main() {
 					Date:        time.Now().Format("2006-01-02 15:04:05"),
 				}
 				tasks = append(tasks, newTask)
-				fmt.Println(newTask)
-				json.Marshal(tasks)
+				fmt.Println("Sucessfully created:", newTask)
+
+				INdata, _ := json.MarshalIndent(tasks, "", " ")
+
+				_ = os.WriteFile("Karpdata.json", INdata, 0644)
+
 			}
 
 		case "remove":
@@ -183,6 +187,7 @@ func main() {
 
 		case "default":
 		case "exit":
+
 			fmt.Println("Goodbye, have a good day/night")
 			return
 		}
@@ -206,6 +211,7 @@ func LoadFromfile() error {
 	fmt.Println("File read successfully!")
 	fmt.Println("Raw bytes:", data)
 	fmt.Println("As string:", string(data))
+	json.Unmarshal(data, &tasks)
 
 	return nil
 

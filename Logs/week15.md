@@ -23,3 +23,4 @@
     been busy with life and work, i am transitioning to a new job currently didn't have much time to code or learn golang. i did focus on expanding my knowledge on golang modules and packages and how to structure my code better. so there was some learning that happened even tho i didn't code much. 
     ## Progress this week:
     1. implemnted a load from file function to load tasks from a json file on startup (very early prototype, needs better error handling and some overall tests along with refinement)
+    2. learned about marshalling structs to json. along with writefile and readfile from the os package. i never knew something like this existed in golang standard library. it is beyond words beautiful
