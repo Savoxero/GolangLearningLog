@@ -75,4 +75,4 @@ This project demonstrates:
 
 ---
 
-Built while learning Go through boot.dev
+Built while learning Go through boot.dev and some other documentation sources.
