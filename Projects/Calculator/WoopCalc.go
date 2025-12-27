@@ -100,7 +100,6 @@ func main() {
 		case "+":
 			finalnumresult = calc.Add(firstOperand, num2)
 			fmt.Println(finalnumresult)
-
 		default:
 			fmt.Println("Unknown operation")
 		}

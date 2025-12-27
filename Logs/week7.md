@@ -3,6 +3,7 @@
 - Git and Github fluency and learning the commands and navigation
 - Planning and realizing project ideas
 - Focusing on one thing at a time and doing it good enough (i have a tendency to jump around topics and not stick to one thing)
+- writing experimental code to ingrain new concepts, and test the limits of both my knowledge and the language itself.
 ## Current plans:
 ### Calculator project:
 - [] word counter using map[string] int (scrapped idea, don't think it's useful enough)
@@ -22,12 +23,3 @@
 ---
 - Exploit your self-awareness: build a routine that deliberately isolates one task (for example, 2-hour sprints with a single deliverable—history fix, slice test, etc.). Treat distractions like compilation errors.
 
-## Cause -> Effect -> Fix log
-### git problem
-- Cause: deleted my README.md file by accident
-- Effect: I was desperate to recover it and that made me learn git commands and and understand the directory structure better
-- Fix: i had to go back to the strict directory it was deleted in, and just restore it, using git restore README.md inside the specific directory (check git status to see where you are, source control is also useful for understanding where the file was deleted at)
-### calculator index condition problem
-- Cause: my calculator was not working as intended, it was skipping some inputs and not counting them properly
-- Effect: i tried searching for some fitting condition for the for loop, learning the limits of the conditions you can possibly make in go
-- fix: for index = 0; index < len(history); index++ it uses the element count of the slice to determine how many times to loop, instead of trying to find a condition that matches the input value( i just needed something to track how many times the calculation has run, and i never knew u could use len() in the for loop condition)
