@@ -25,10 +25,7 @@ func LoadFromfile() ([]byte, error, []string) {
 	return data, nil, jaja
 
 }
-func IDgenerator(a int) int {
-	a++
-	return a
-}
+
 func WelcomeMSG() {
 	const magikarp string = `
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣶⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
