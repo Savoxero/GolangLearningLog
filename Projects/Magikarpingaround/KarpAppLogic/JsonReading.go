@@ -1,4 +1,4 @@
-package logic
+package CMD
 
 import (
 	"encoding/json"

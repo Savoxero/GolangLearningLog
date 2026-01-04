@@ -1,7 +1,7 @@
 package main
 
 import (
-	logic "InfraStru/KarpPackages"
+	CMD "CMD/KarpAppLogic"
 	"bufio"
 	"fmt"
 	"os"
@@ -9,11 +9,11 @@ import (
 )
 
 func main() {
-
 	scanner := bufio.NewScanner(os.Stdin)
-	data, _, jaja := logic.LoadFromfile()
+	data, _, jaja := CMD.LoadFromfile()
 	fmt.Println(jaja)
 	fmt.Println(data)
+	CMD.WelcomeMSG()
 
 	for {
 		fmt.Print("> ")
@@ -40,14 +40,20 @@ func main() {
 			fmt.Println("")
 
 		case "add":
-			Taskcreated := logic.Add(argtokens)
+
+			Taskcreated, Validation := CMD.Add(argtokens)
+			if Validation != nil {
+				fmt.Println(Validation)
+				break
+			}
 			fmt.Println("Sucessfully created:", Taskcreated)
+
 		case "remove":
-			logic.Del(argtokens)
+			CMD.Del(argtokens)
 
 		case "modify":
 		case "print":
-			logic.Print(argtokens)
+			CMD.Print(argtokens)
 
 		case "default":
 		case "exit":

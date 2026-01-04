@@ -1,6 +1,7 @@
-package logic
+package CMD
 
 import (
+	"errors"
 	"fmt"
 	"strconv"
 	"strings"
@@ -11,35 +12,40 @@ type Task struct {
 	ID          int
 	Description string
 	Priority    string
-	Completed   bool
+	Completion  bool
 	Date        string
 }
 
 var tasks []Task
 var RiseID int
 
-func Add(argtokens string) Task {
+func Add(argtokens string) (Task, error) {
 	var taskprint Task
+	argtokens = strings.TrimSpace(argtokens)
+	/// edge case for empty input necessary fix, {0 false}
+	if argtokens == "" {
+		return taskprint, errors.New("Empty input detected")
+	}
 	descriptions := strings.Split(argtokens, "&")
 	for _, desc := range descriptions {
 		desc = strings.TrimSpace(desc)
 		if desc == "" {
-			fmt.Println("invalid argument")
-			break
+			continue
 		}
 		RiseID = IDgenerator(RiseID)
 		newTask := Task{
 			ID:          RiseID,
 			Description: desc,
 			Priority:    "medium",
-			Completed:   false,
+			Completion:  false,
 			Date:        time.Now().Format("2006-01-02 15:04:05"),
 		}
 		tasks = append(tasks, newTask)
 		taskprint = newTask
 	}
-	return taskprint
+	return taskprint, nil
 }
+
 func Del(argtokens string) {
 	multdel := strings.Split(argtokens, "&")
 	for _, IDIN := range multdel {
@@ -56,7 +62,7 @@ func Del(argtokens string) {
 		}
 		id, err := strconv.Atoi(IDIN)
 		if err != nil {
-			fmt.Println(" Error Occured, Invalid Input, An ID is necessary")
+			fmt.Println(" Error Occured, Invalid Input, an ID is necessary")
 			continue
 		}
 
@@ -95,7 +101,7 @@ func Print(id string) {
 			}
 			for i := range tasks {
 				if tasks[i].ID == dada {
-					fmt.Println("Task Number:", tasks[i].ID, "// Desc:", tasks[i].Description, "// Time added/Created:", tasks[i].Date, "// Priority:", tasks[i].Priority, "// Completion:", tasks[i].Completed)
+					fmt.Println("Task Number:", tasks[i].ID, "// Desc:", tasks[i].Description, "// Time added/Created:", tasks[i].Date, "// Priority:", tasks[i].Priority, "// Completion:", tasks[i].Completion)
 					boolflag = true
 					continue
 				}
