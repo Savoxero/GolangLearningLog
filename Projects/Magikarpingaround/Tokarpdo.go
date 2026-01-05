@@ -10,10 +10,10 @@ import (
 
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
-	data, _, jaja := CMD.LoadFromfile()
-	fmt.Println(jaja)
-	fmt.Println(data)
-	CMD.WelcomeMSG()
+	// data, _, jaja := CMD.LoadFromfile()
+	// fmt.Println(jaja)
+	// fmt.Println(data)
+	// CMD.WelcomeMSG()
 
 	for {
 		fmt.Print("> ")
@@ -40,16 +40,17 @@ func main() {
 			fmt.Println("")
 
 		case "add":
-
 			Taskcreated, Validation := CMD.Add(argtokens)
 			if Validation != nil {
 				fmt.Println(Validation)
 				break
 			}
+
 			fmt.Println("Sucessfully created:", Taskcreated)
 
 		case "remove":
 			CMD.Del(argtokens)
+			fmt.Println("deleted the following task: ID:", d.ID, "desc:", d.Description)
 
 		case "modify":
 		case "print":
