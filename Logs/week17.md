@@ -21,6 +21,8 @@
 ## Now:
 - Rewriting the codebase and splitting everything into their own packages for better code structure and readability. after that is done, my main focus is going to be to refine this as much as possible and then move on to implementing the to do list features one by one. alot of work ahead of me but i am excited to tackle them all. 
 ## Progress:
+- renamed and rewrote the remove function into delete. i added some proper error handling but went on a shortcut when it comes to the desired output, i will change that tommorow but for now it's functional. Not good.
 ## Problems faced:
+- been trying to share the data to main in a efficient manner, i tried functions, but it was just empty output unecessary complexity. so i went with global variable for now, will refactor later. i do not like this decision. i need to somehow transport the slice data into main so the user knows what was deleted without necessary bloat.
 ## Notes: 
 ## End of week thoughts:

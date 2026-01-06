@@ -37,7 +37,6 @@ func Add(argtokens string) ([]Task, error) {
 		}
 		tasks = append(tasks, newTask)
 		taskprint = append(taskprint, newTask)
-
 	}
 	if len(taskprint) == 0 {
 		return taskprint, errors.New("Empty input detected, please enter a valid description")
