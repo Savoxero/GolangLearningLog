@@ -6,39 +6,51 @@ import (
 	"strings"
 )
 
-var Taskdeletion []Task
+func Del(argtokens string) ([]Task, error) {
+	var lastdeltask []Task
+	if len(tasks) == 0 {
+		return nil, errors.New("No tasks currently saved.")
+	}
+	if len(argtokens) == 0 {
+		return nil, errors.New("Empty input detected, Please enter a valid ID")
 
-func Del(argtokens string) error {
+	}
+
 	multdel := strings.Split(argtokens, "&")
 	for _, IDIN := range multdel {
 		found := false
 		IDIN = strings.TrimSpace(IDIN)
 		if IDIN == "" {
-			return errors.New("Empty input detected. Enter a valid ID")
+			continue
 		}
-		if len(tasks) == 0 {
-			return errors.New("No tasks currently saved.")
-		}
+
 		id, err := strconv.Atoi(IDIN)
 		if err != nil {
-			return errors.New("Couldn't verify the ID; Please enter a valid ID")
+			if len(lastdeltask) > 0 {
+				continue
+			} else {
+				return nil, errors.New("Couldn't verify the ID; Please enter a valid ID")
+			}
 		}
 
 		for i, d := range tasks {
 			if id == d.ID {
+				lastdeltask = append(lastdeltask, tasks[i])
 				found = true
-				Taskdeletion = append(Taskdeletion, tasks[i])
 				tasks = append(tasks[:i], tasks[i+1:]...)
 				break
 
 			}
-
 		}
+
 		if !found {
-			return errors.New("The number with the ID of " + IDIN + " Has not been found")
+			if len(lastdeltask) > 0 {
+				continue
+			} else {
+				return nil, errors.New("The number with the ID of " + IDIN + " Has not been found")
+			}
 		}
 	}
-
-	return nil
+	return lastdeltask, nil
 
 }

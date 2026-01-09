@@ -49,13 +49,14 @@ func main() {
 			fmt.Println("Sucessfully created:", Taskcreated)
 
 		case "delete":
-			errwarning := CMD.Del(argtokens)
+			TaskdeletionMsg, errwarning := CMD.Del(argtokens)
 			if errwarning != nil {
 				fmt.Println(errwarning)
-				break
 			}
-			fmt.Println("deleted the following task/s:", CMD.Taskdeletion)
-			CMD.Taskdeletion = nil
+			for i := range TaskdeletionMsg {
+				fmt.Println("deleted the Task with the ID of:", TaskdeletionMsg[i].ID, "With the Description of:", TaskdeletionMsg[i].Description)
+
+			}
 
 		case "modify":
 		case "print":
@@ -63,7 +64,6 @@ func main() {
 
 		case "default":
 		case "exit":
-
 			fmt.Println("Goodbye, have a good day/night")
 			return
 		}
