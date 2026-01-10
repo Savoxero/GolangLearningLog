@@ -29,7 +29,7 @@ func Del(argtokens string) ([]Task, error) {
 			if len(lastdeltask) > 0 {
 				continue
 			} else {
-				return nil, errors.New("Couldn't verify the ID; Please enter a valid ID")
+				return nil, errors.New("Couldn't verify the input, Please enter a valid ID")
 			}
 		}
 

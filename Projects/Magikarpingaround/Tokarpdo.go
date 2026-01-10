@@ -60,7 +60,10 @@ func main() {
 
 		case "modify":
 		case "print":
-			CMD.Print(argtokens)
+			PrntError := CMD.Print(argtokens)
+			if PrntError != nil {
+				fmt.Println(PrntError)
+			}
 
 		case "default":
 		case "exit":
