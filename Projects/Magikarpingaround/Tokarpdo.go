@@ -60,10 +60,11 @@ func main() {
 
 		case "modify":
 		case "print":
-			PrntError := CMD.Print(argtokens)
+			filter, PrntError := CMD.PrintValidation(argtokens)
 			if PrntError != nil {
 				fmt.Println(PrntError)
 			}
+			CMD.Print(filter)
 
 		case "default":
 		case "exit":

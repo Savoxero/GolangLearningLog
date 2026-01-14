@@ -34,3 +34,10 @@
 - i rewrote some of the code in karpprint.go but i am mixing up logic, formatting and printing. i need to exactly separate each role. logic should be just logic, return an error if something goes wrong. otherwise return the data. as simple as that. formatting should take the data and format it into a string. printing should just print the input to the user in main.go from all the data gathered and mutations made in other packages.
 - i feel great coding with music on. helps me focus and get into the zone faster. Problem solving is really enjoyable when you get into the flow state. 
 ## End of week thoughts:
+- Pretty productive week overall. currently on a job search so i have lots of time to code and learn golang. 
+- i do wonder how far i can take this project to. some of the idesa are: 
+ - letting the user add a category to the struct, and then filter by category when listing tasks.
+ - adding due dates and reminders via a background goroutine that checks for due dates and pop external notifications via a windows tool.
+ -  detailed modification of tasks, like changing priority, adding tags, changing due dates etc.
+ - undo/redo functionality via a command stack. 
+ - and filtering and sorting tasks by different criteria.
