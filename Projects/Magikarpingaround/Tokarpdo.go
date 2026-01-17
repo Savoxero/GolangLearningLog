@@ -45,8 +45,8 @@ func main() {
 				fmt.Println(Validation)
 				break
 			}
-
-			fmt.Println("Sucessfully created:", Taskcreated)
+			fmt.Println("Succesfully created the following Task/s:")
+			CMD.Print(Taskcreated)
 
 		case "delete":
 			TaskdeletionMsg, errwarning := CMD.Del(argtokens)
@@ -55,6 +55,7 @@ func main() {
 			}
 			for i := range TaskdeletionMsg {
 				fmt.Println("deleted the Task with the ID of:", TaskdeletionMsg[i].ID, "With the Description of:", TaskdeletionMsg[i].Description)
+				CMD.Print(TaskdeletionMsg)
 
 			}
 

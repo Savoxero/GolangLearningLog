@@ -47,7 +47,7 @@ func Del(argtokens string) ([]Task, error) {
 			if len(lastdeltask) > 0 {
 				continue
 			} else {
-				return nil, errors.New("The number with the ID of " + IDIN + " Has not been found")
+				return nil, errors.New("The ID with the Number of " + IDIN + " Has not been found")
 			}
 		}
 	}

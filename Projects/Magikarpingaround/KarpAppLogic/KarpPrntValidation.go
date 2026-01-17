@@ -35,7 +35,6 @@ func PrintValidation(id string) ([]Task, error) {
 				if tasks[i].ID == usrIN {
 
 					TemptaskTrack = append(TemptaskTrack, tasks[i])
-					//"Task Number:", tasks[i].ID, "// Desc:", tasks[i].Description, "// Time added/Created:", tasks[i].Date, "// Priority:", tasks[i].Priority, "// Completion:", tasks[i].Completion)//
 					boolflag = true
 
 				}
