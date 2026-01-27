@@ -1,56 +1,33 @@
 package CMD
 
 import (
+	Domain "MagikarpingAround/KarpDom"
 	"errors"
 	"strconv"
 	"strings"
 )
 
-func Del(argtokens string) ([]Task, error) {
-	var lastdeltask []Task
-	if len(tasks) == 0 {
-		return nil, errors.New("No tasks currently saved.")
-	}
-	if len(argtokens) == 0 {
-		return nil, errors.New("Empty input detected, Please enter a valid ID")
-
-	}
-
+func Del(argtokens string) ([]Domain.Task, error) {
+	var ValidatedDEL []Domain.Task
+	var IDholder []int
 	multdel := strings.Split(argtokens, "&")
 	for _, IDIN := range multdel {
-		found := false
 		IDIN = strings.TrimSpace(IDIN)
-		if IDIN == "" {
-			continue
-		}
-
 		id, err := strconv.Atoi(IDIN)
 		if err != nil {
-			if len(lastdeltask) > 0 {
+			if len(multdel) > 2 {
 				continue
 			} else {
 				return nil, errors.New("Couldn't verify the input, Please enter a valid ID")
 			}
 		}
-
-		for i, d := range tasks {
-			if id == d.ID {
-				lastdeltask = append(lastdeltask, tasks[i])
-				found = true
-				tasks = append(tasks[:i], tasks[i+1:]...)
-				break
-
-			}
+		IDholder = append(IDholder, id)
+		Validation, err := Domain.DeleteTask(IDholder)
+		ValidatedDEL = append(ValidatedDEL, Validation...)
+		if err != nil {
+			return ValidatedDEL, err
 		}
 
-		if !found {
-			if len(lastdeltask) > 0 {
-				continue
-			} else {
-				return nil, errors.New("The ID with the Number of " + IDIN + " Has not been found")
-			}
-		}
 	}
-	return lastdeltask, nil
-
+	return ValidatedDEL, nil
 }

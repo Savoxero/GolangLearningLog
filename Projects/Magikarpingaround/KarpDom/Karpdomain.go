@@ -52,30 +52,33 @@ func AddTask(input []string) ([]Task, error) {
 }
 func DeleteTask(input []int) ([]Task, error) {
 	var errs []error
+	var taskdeletionholder []Task
 	if len(tasks) == 0 {
 		return nil, errors.New("No saved tasks currently")
 	}
-	found := false
 	for _, id := range input {
+		found := false
 		for d, task := range tasks {
 			if id == task.ID {
+				taskdeletionholder = append(taskdeletionholder, tasks[d])
 				tasks = append(tasks[:d], tasks[d+1:]...)
 				found = true
-				break
 			}
-		}
-		if !found {
-			errs = append(errs, errors.New("The ID with the number of: "+strconv.Itoa(id)+" has not been found"))
+			if !found {
+				errs = append(errs, errors.New("The ID with the number of: "+strconv.Itoa(id)+" has not been found"))
+				continue
+			}
 		}
 	}
 	if len(errs) > 0 {
 		var msgs []string
 		for _, i := range errs {
 			msgs = append(msgs, i.Error())
-			return tasks, errors.New(strings.Join(msgs, "; "))
+			return taskdeletionholder, errors.New(strings.Join(msgs, "; "))
 		}
 	}
-	return tasks, nil
+
+	return taskdeletionholder, nil
 }
 func KarpPrint(input []int) ([]Task, error) {
 	var errs []error

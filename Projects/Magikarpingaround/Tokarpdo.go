@@ -1,7 +1,7 @@
 package main
 
 import (
-	CMD "CMD/KarpAppLogic"
+	CMD "MagikarpingAround/KarpAppLogic"
 	"bufio"
 	"fmt"
 	"os"
@@ -41,31 +41,37 @@ func main() {
 
 		case "add":
 			Taskcreated, Validation := CMD.Add(argtokens)
-			if Validation != nil {
+			if Validation != nil { // double print, it's good enough semantics, if the user adds some empty input it gets returned as an error, and if the task was valid to be saved
+				// it prints it. there could be a better alternative cause this looks a little redundant.
 				fmt.Println(Validation)
-				break
+				if len(Taskcreated) > 0 {
+					fmt.Println("[Succesfully created the following Task/s:]")
+					CMD.Print(Taskcreated)
+				}
+
+			} else if len(Taskcreated) > 0 {
+				fmt.Println("[Succesfully created the following Task/s:]")
+				CMD.Print(Taskcreated)
 			}
-			fmt.Println("Succesfully created the following Task/s:")
-			CMD.Print(Taskcreated)
 
 		case "delete":
 			TaskdeletionMsg, errwarning := CMD.Del(argtokens)
 			if errwarning != nil {
-				fmt.Println(errwarning)
-			}
-			for i := range TaskdeletionMsg {
-				fmt.Println("deleted the Task with the ID of:", TaskdeletionMsg[i].ID, "With the Description of:", TaskdeletionMsg[i].Description)
 				CMD.Print(TaskdeletionMsg)
-
+				fmt.Println(errwarning)
+				break
 			}
+			fmt.Println("[deleted the following Task/s:]")
+			CMD.Print(TaskdeletionMsg)
 
 		case "modify":
 		case "print":
-			filter, PrntError := CMD.PrintValidation(argtokens)
+			ValidatedInput, PrntError := CMD.PrintValidation(argtokens)
 			if PrntError != nil {
 				fmt.Println(PrntError)
+				break
 			}
-			CMD.Print(filter)
+			CMD.Print(ValidatedInput)
 
 		case "default":
 		case "exit":

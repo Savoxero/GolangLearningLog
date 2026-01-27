@@ -1,10 +1,11 @@
 package CMD
 
 import (
+	Domain "MagikarpingAround/KarpDom"
 	"fmt"
 )
 
-func Print(input []Task) {
+func Print(input []Domain.Task) {
 	if len(input) > 1 {
 		fmt.Printf("+------+---------------------+-----------+------------+--------------------+\n| ID:  | Description:        | Priority: | Completed: | Date added:        |\n+------+---------------------+-----------+------------+--------------------+\n")
 		for i := range input {

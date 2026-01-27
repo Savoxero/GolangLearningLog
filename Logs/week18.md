@@ -23,3 +23,9 @@
 - clean separation of concerns between packages. printingvalidation and core logic are separated, print just prints what was validated and processed by other packages.
 ## Next:
 - implement save/load to file functionality.
+- subcase of modify completetion, desc, priority
+## End of week 18 status:
+- printing package is done for now.
+- been fighting with the code structure, i created a new domain package to hold the core logic of the app, and i am working on moving the core logic there.
+- i realized that the structure of the app is not very good, so i am working on improving it.
+- save/load to file functionality is not yet implemented before i do the refactor.

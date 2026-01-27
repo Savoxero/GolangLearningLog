@@ -1,3 +1,3 @@
-module CMD
+module MagikarpingAround
 
 go 1.24.3

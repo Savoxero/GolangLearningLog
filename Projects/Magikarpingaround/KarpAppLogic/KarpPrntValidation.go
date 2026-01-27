@@ -1,54 +1,40 @@
 package CMD
 
 import (
+	Domain "MagikarpingAround/KarpDom"
 	"errors"
 	"strconv"
 	"strings"
 )
 
-func PrintValidation(id string) ([]Task, error) {
-	var TemptaskTrack []Task
-	if len(tasks) == 0 {
-		return nil, errors.New("No saved Tasks currently")
-	}
-	TemptaskTrack = nil
+func PrintValidation(id string) ([]Domain.Task, error) {
+	var TemptaskTrack []Domain.Task
 	argtokens := strings.TrimSpace(id)
 	if argtokens == "" {
-		return tasks, nil
+		var emptyinp []int
+		TemptaskTrack, err := Domain.KarpPrint(emptyinp)
+		if err != nil {
+			return nil, err // in case tasks is empty
+		} else {
+			return TemptaskTrack, nil
+		}
 	}
 	multiput := strings.Split(argtokens, "&")
 	if argtokens != "" {
-		for _, stRang := range multiput {
-			boolflag := false
-
-			stRang = strings.TrimSpace(stRang)
-			usrIN, err := strconv.Atoi(stRang)
+		for _, STRrange := range multiput {
+			STRrange = strings.TrimSpace(STRrange)
+			usrIN, err := strconv.Atoi(STRrange)
 			if err != nil {
-				if len(multiput) > 1 {
-					continue
-				} else {
-					return nil, errors.New("The input: " + stRang + " Is an invalid argument. Please Enter an ID or Type Check With No ID")
-				}
+				return nil, errors.New("The input: " + STRrange + " Is an invalid argument. Please Enter an ID or Type Check With No ID")
 			}
-
-			for i := range tasks {
-				if tasks[i].ID == usrIN {
-
-					TemptaskTrack = append(TemptaskTrack, tasks[i])
-					boolflag = true
-
-				}
-
-			}
-			if boolflag == false {
-				if len(multiput) > 1 {
-					continue
-				} else {
-					return nil, errors.New("The task with the ID of: " + strconv.Itoa(usrIN) + " could not be found.")
-				}
-
+			var MultID []int
+			MultID = append(MultID, usrIN)
+			TemptaskTrack, err = Domain.KarpPrint(MultID)
+			if err != nil {
+				return nil, err
 			}
 		}
+
 	}
 	return TemptaskTrack, nil
 
